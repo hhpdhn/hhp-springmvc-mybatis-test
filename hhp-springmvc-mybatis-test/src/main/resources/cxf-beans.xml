@@ -4,5 +4,5 @@ xmlns:jaxws="http://cxf.apache.org/jaxws"
 xsi:schemaLocation="http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd 
 http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
 >
-    <jaxws:endpoint id="cxfDemo" implementor="andy.cxf.HelloWorldImpl" address="/cxfdemo" />
+    <jaxws:endpoint id="cxfDemo" implementor="com.manage.cxf.HelloWorldImpl" address="/cxfdemo" />
 </beans>

@@ -10,23 +10,23 @@
 	<context:property-placeholder location="classpath:config.properties" />
 
 	<!--自动扫描含有@Service将其注入为bean -->
-	<context:component-scan base-package="andy" />
+	<context:component-scan base-package="com.manage" />
 
-	<bean id="job2"
+	<!-- <bean id="job2"
 		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
 		<property name="targetObject">
-			<!-- <bean class="andy.quartz.JobOne" /> -->
-			<ref bean="jobOne"/>
+			<bean class="andy.quartz.JobOne" />
+			<ref bean="jobOne" />
 		</property>
 		<property name="targetMethod" value="jobHand" />
-		<property name="concurrent" value="false" /><!-- 作业不并发调度 -->
+		<property name="concurrent" value="false" />作业不并发调度
 	</bean>
 
 	<bean id="simpleTrigger"
 		class="org.springframework.scheduling.quartz.SimpleTriggerFactoryBean">
 		<property name="jobDetail" ref="job2" />
-		<property name="startDelay" value="0" /><!-- 调度工厂实例化后，经过0秒开始执行调度 -->
-		<property name="repeatInterval" value="2000" /><!-- 每2秒调度一次 -->
+		<property name="startDelay" value="0" />调度工厂实例化后，经过0秒开始执行调度
+		<property name="repeatInterval" value="2000" />每2秒调度一次
 	</bean>
 
 	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
@@ -35,6 +35,6 @@
 				<ref bean="simpleTrigger" />
 			</list>
 		</property>
-	</bean>
+	</bean> -->
 
 </beans>

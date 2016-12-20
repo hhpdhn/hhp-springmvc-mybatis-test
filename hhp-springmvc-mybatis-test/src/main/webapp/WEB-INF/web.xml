@@ -11,8 +11,28 @@
 
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>classpath:spring.xml,classpath:spring-mybatis.xml,classpath:cxf-beans.xml</param-value>
+		<param-value>classpath:spring-mybatis.xml,classpath:spring-mvc.xml,classpath:spring.xml,classpath:cxf-beans.xml</param-value>
 	</context-param>
+
+	<!-- log4j配置，文件路径，因为是跟随项目启动 -->
+	<context-param>
+		<param-name>log4jConfigLocation</param-name>
+		<param-value>classpath:log4j.properties</param-value>
+	</context-param>
+	
+	<!-- 配置log4j.xml变量，如果需要动态的就使用下面方式，使用方法${name} -->
+	<context-param>
+		<param-name>controller</param-name>
+		<param-value>controller-log</param-value>
+	</context-param>
+
+	<context-param>
+		<param-name>loggingLevel</param-name>
+		<param-value>info</param-value>
+	</context-param>
+	
+	
+
 
 	<filter>
 		<filter-name>encodingFilter</filter-name>
@@ -40,6 +60,13 @@
 		<listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
 	</listener>
 
+	<!-- 加载log4j配置文件 -->
+	<listener>
+		<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+	</listener>
+	
+
+
 	<servlet>
 		<description>spring mvc servlet</description>
 		<servlet-name>rest</servlet-name>
@@ -56,17 +83,26 @@
 		<servlet-name>rest</servlet-name>
 		<url-pattern>*.htmls</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
-        <servlet-name>CXFServlet</servlet-name>
-        <servlet-class>org.apache.cxf.transport.servlet.CXFServlet</servlet-class>
-        <load-on-startup>1</load-on-startup>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>CXFServlet</servlet-name>
-        <url-pattern>/cxf/*</url-pattern>
-    </servlet-mapping>
-	
+		<servlet-name>CXFServlet</servlet-name>
+		<servlet-class>org.apache.cxf.transport.servlet.CXFServlet</servlet-class>
+		<load-on-startup>2</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CXFServlet</servlet-name>
+		<url-pattern>/cxf/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>DruidStatView</servlet-name>
+		<servlet-class>com.alibaba.druid.support.http.StatViewServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DruidStatView</servlet-name>
+		<url-pattern>/druid/*</url-pattern>
+	</servlet-mapping>
+
 
 	<!-- 配置session超时时间，单位分钟 -->
 	<session-config>
