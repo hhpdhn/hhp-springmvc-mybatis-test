@@ -29,7 +29,8 @@ public class LoginFileter implements Filter {
 		HttpServletResponse res = (HttpServletResponse) response;
 
 		HttpSession session = req.getSession();
-		if (session.getAttribute("username") != null) {
+		int indexOf = req.getRequestURI().indexOf("login.htmls");
+		if (session.getAttribute("username") != null||indexOf>=0) {
 			chain.doFilter(request, response);
 		} else {
 //			res.sendRedirect("../WEB-INF/views/sys/login.jsp");

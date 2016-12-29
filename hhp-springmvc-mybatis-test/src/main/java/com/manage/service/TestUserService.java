@@ -14,7 +14,7 @@ import com.alibaba.fastjson.JSON;
 import com.manage.model.UserInfo;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "classpath:spring.xml", "classpath:spring-mybatis.xml" })
+@ContextConfiguration(locations = { "classpath:spring-mybatis.xml", "classpath:spring.xml" })
 public class TestUserService {
 	private static final Logger LOGGER = Logger.getLogger(TestUserService.class);
 
@@ -24,13 +24,14 @@ public class TestUserService {
 	@Test
 	public void testQueryById1() {
 		UserInfo user = new UserInfo();
-		UserInfo userInfo = userService.getUserById(user );
+		UserInfo userInfo = userService.getUserById(user);
 		LOGGER.info(JSON.toJSON(userInfo));
 	}
 
 	@Test
 	public void testQueryAll() {
 		List<UserInfo> userInfos = userService.getUsers();
+		System.out.println("size:"+userInfos.size());
 		for (Iterator<UserInfo> iterator = userInfos.iterator(); iterator.hasNext();) {
 			UserInfo userInfo = (UserInfo) iterator.next();
 			System.out.println(userInfo.getName());
@@ -48,9 +49,9 @@ public class TestUserService {
 		int result = userService.insert(userInfo);
 		System.out.println(result);
 	}
-	
+
 	@Test
-	public void testLogInfo(){
+	public void testLogInfo() {
 		System.out.println("1245567");
 		LOGGER.info("info");
 		LOGGER.debug("debug");
