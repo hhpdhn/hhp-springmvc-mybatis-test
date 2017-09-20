@@ -12,4 +12,6 @@ public interface UserService {
 	int insert(UserInfo userInfo);
 	
 	String invokeUserService();
+	
+	int updateTestAffair(UserInfo userInfo);
 }

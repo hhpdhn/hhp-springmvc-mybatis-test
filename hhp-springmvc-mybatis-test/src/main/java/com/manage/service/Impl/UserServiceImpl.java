@@ -29,7 +29,7 @@ public class UserServiceImpl implements UserService {
 	public int insert(UserInfo userInfo) {
 
 		int result = userInfoMapper.insert(userInfo);
-
+//		int count = 9/0;
 		System.out.println(result);
 		return result;
 	}
@@ -38,6 +38,15 @@ public class UserServiceImpl implements UserService {
 	public String invokeUserService() {
 		System.out.println("invokeUserService");
 		return "invokeUserService UserServiceImpl";
+	}
+
+	@Override
+	public int updateTestAffair(UserInfo userInfo) {
+		int result = userInfoMapper.insert(userInfo);
+		System.out.println(result);
+		int deleteUser = userInfoMapper.deleteUser(userInfo.getId());
+		System.out.println(deleteUser);
+		return deleteUser;
 	}
 
 }

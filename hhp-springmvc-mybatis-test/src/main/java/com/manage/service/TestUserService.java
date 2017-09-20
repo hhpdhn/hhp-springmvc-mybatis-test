@@ -24,6 +24,7 @@ public class TestUserService {
 	@Test
 	public void testQueryById1() {
 		UserInfo user = new UserInfo();
+		user.setId("1");
 		UserInfo userInfo = userService.getUserById(user);
 		LOGGER.info(JSON.toJSON(userInfo));
 	}
@@ -43,10 +44,20 @@ public class TestUserService {
 	@Test
 	public void testInsert() {
 		UserInfo userInfo = new UserInfo();
-		userInfo.setId("2");
+		userInfo.setId("4");
 		userInfo.setName("xiaoming");
 		userInfo.setPhone("13548051653");
 		int result = userService.insert(userInfo);
+		System.out.println(result);
+	}
+	
+	@Test
+	public void testTransaction() {
+		UserInfo userInfo = new UserInfo();
+		userInfo.setId("4");
+		userInfo.setName("xiaoming");
+		userInfo.setPhone("13548051653");
+		int result = userService.updateTestAffair(userInfo);
 		System.out.println(result);
 	}
 
